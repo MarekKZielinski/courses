@@ -209,13 +209,13 @@ class Vgg16():
                 validation_data=(val, val_labels), batch_size=batch_size)
 
 
-    def fit(self, batches, val_batches, nb_epoch=1):
+    def fit(self, batches, val_batches, nb_epoch=1, steps_per_epoch=1, validation_steps=1):
         """
             Fits the model on data yielded batch-by-batch by a Python generator.
             See Keras documentation: https://keras.io/models/model/
         """
-        self.model.fit_generator(batches, samples_per_epoch=batches.samples, nb_epoch=nb_epoch,
-                validation_data=val_batches, nb_val_samples=val_batches.samples)
+        self.model.fit_generator(batches, steps_per_epoch=steps_per_epoch, nb_epoch=nb_epoch,
+                validation_data=val_batches, validation_steps=validation_steps)
 
 
     def test(self, path, batch_size=8):
